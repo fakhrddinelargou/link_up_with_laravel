@@ -19,10 +19,16 @@
 </div>
 <!-- Far Right: Profile Action -->
 <div class="flex items-center gap-4 shrink-0">
-<button class="flex items-center gap-2 px-4 h-10 bg-primary hover:bg-primary/90 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm">
-<span class="material-symbols-outlined text-[20px]">person</span>
-<span>Profile</span>
-</button>
+<form action="/logout" method="POST">
+    @csrf
+
+    <button type="submit"
+        class="flex items-center gap-2 px-4 h-10 bg-primary hover:bg-primary/90 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm">
+        <span class="material-symbols-outlined text-[20px]">person</span>
+        <span>Logout</span>
+    </button>
+</form>
+
 <div class="size-10 rounded-full border border-gray-100 dark:border-gray-700 bg-center bg-cover bg-no-repeat" data-alt="User avatar placeholder with abstract colors" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDI8yen7gNX9kAFZJFmQjLDEmK1TEUoRFY7uNFEcRTdgUmF65lLSbCjCsCwiUw5d762dZhE6U34nohQ8VNrMwjSC12fDBq2IiFy3aqd6xELOOZyIVZKFQcy3ZGxMd27rA-rKzrVoaMT8l-i7SIvMGTm6xA1H1dJn3jf1MIE54DTwquaPYkKHSzReT0CU85UOdLi3Vuset0gLlcHSYCHGhYIfvIKWrwczhdzUdtbdnHwliKY2ObtUDmPOWTM5XSIfIUrocceNYQwkhkb')"></div>
 </div>
 </div>

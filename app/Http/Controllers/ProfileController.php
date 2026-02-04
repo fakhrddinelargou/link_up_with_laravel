@@ -9,9 +9,22 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
+use App\Models\Profile;
+use Illuminate\Database\Eloquent\Model;
+
+
 
 class ProfileController extends Controller
 {
+
+
+
+  public function index(){
+    return view('profile');
+  }
+
+
     /**
      * Display the user's profile form.
      */
@@ -61,11 +74,36 @@ class ProfileController extends Controller
 
    public function search(Request $request)
 {
-    $search = $request->query('name');
+    
+     $username = $request->query('username');
 
-    $users = User::where('name', 'LIKE', "%{$search}%")->get();
+     $users = DB::table('users')
+        ->where('username', 'LIKE', $username . '%')
+        ->limit(10)
+        ->get();
 
-    return response()->json($users);
+    // return $users;
+//     return response()->json([
+//     'ok' => true
+// ]);
+
+    return response()->json($users, 200);
+
+}
+
+
+  public function find()
+{
+    $profile = Profile::with('user')->findOrFail(1);
+
+    return $profile->user;
+}
+
+
+public function show(Request $request){
+    
+   $lens = ['js','PHP','REACT'];
+    return view('salam',compact('lens'));
 }
 
 }

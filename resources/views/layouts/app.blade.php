@@ -3,7 +3,7 @@
    <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Minimal Desktop Header Layout</title>
+<title>@yield('title')</title>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Google Fonts -->
@@ -43,9 +43,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         </head>
     <body class="font-sans antialiased">
- @include('layouts.navigation')
- @include($content);
-
+ @include('layouts.header')
+<main class="max-w-[1440px] mx-auto px-6 py-12 min-h-[calc(100vh-64px)]">
+    @yield('main')
+</main>
+ 
  <script>
 
 const find_user = document.getElementById('find_user');
@@ -59,13 +61,15 @@ find_user.addEventListener('input', async (e) => {
         return;
     }
 
-    const response = await fetch(`/users/search?query=${encodeURIComponent(username)}`);
+    const response = await fetch(`search?username=${username}`);
     const users = await response.json();
+    console.log(users);
+    
 
     results.innerHTML = '';
 
     users.forEach(user => {
-        results.innerHTML += `<li>${user.name}</li>`;
+        results.innerHTML += `<li>${user.username}</li>`;
     });
 });
 
